@@ -2,7 +2,7 @@ const fs = require('fs')
 const cursosI=require('./funcionescursos.js');
 const hbs=require('hbs');
 listaCursos = require('../data/cursos.json')
-listaEstudiantes = require('../data/estudiantes.json')
+listaEstudiantes = require('../data/inscritos.json')
 
 
 hbs.registerHelper('obtenerPromedio',(nota1,nota2,nota3)=>{
@@ -107,9 +107,9 @@ hbs.registerHelper('ValoresSelectCursos',()=>{
                     };
                 listaEstudiantes.push(inscritoGuardar);
                 let datos = JSON.stringify(listaEstudiantes)
-                fs.writeFile('./data/estudiantes.json', datos, err=>{
+                fs.writeFile('./data/inscritos.json', datos, err=>{
                       if(err) throw(err)
-                      console.log("Archivo estudiantes.json fue actualizado satisfactoriamente")
+                      console.log("Archivo inscritos.json fue actualizado satisfactoriamente")
                 })
                 textoci=textoci+" Exitoso, el estudiante "+nombreE+" se inscribio en el curso "+tituloCurso;
                }
@@ -206,7 +206,7 @@ hbs.registerHelper('listarcursosinteresado',()=>{
 });
 
 hbs.registerHelper('listarTodosEstudiantes',()=>{
-    listaEstudiantesN = require('../data/estudiantes.json')
+    listaEstudiantesN = require('../data/inscritos.json')
     let textoe=" <tr> \
                 <th> Estudiante </th>\
                 <th> Documento </th>\
@@ -289,9 +289,9 @@ hbs.registerHelper('crearFormActions',(idcE)=>{
                     else{
                         listaEstudiantes=nuevo;
                         let datos = JSON.stringify(listaEstudiantes)
-                        fs.writeFile('./data/estudiantes.json', datos, err=>{
+                        fs.writeFile('./data/inscritos.json', datos, err=>{
                         if(err) throw(err)
-                            console.log("Archivo estudiantes.json fue actualizado satisfactoriamente")
+                            console.log("Archivo inscritos.json fue actualizado satisfactoriamente")
                         })
                         console.log('lista de estudiantes actualizada satisfactoriamente');
                     }

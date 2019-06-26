@@ -7,6 +7,68 @@ const port = process.env.PORT || 3000;
 
 const dirNode_modules = path.join(__dirname, '../node_modules')
 
+//
+//declaracionesBD
+const MongoClient= require('mongodb').MongoClient;
+
+//connection URL
+const url='mongodb://localhost:27017';
+
+//database Name
+const dbName ='extension';
+
+// create a new mongoClient
+const client = new MongoClient(url, {useNewUrlParser: true   });
+
+// Use connect method to connect to the server
+client.connect(function(err) {
+    if(err){
+       return console.log("No se pudo conectar a mongoDB");
+    }
+
+console.log('Conectado mongoDB');
+
+const db=client.db(dbName);
+
+const collectionCursos= db.collection('cursos');
+const collectionEstudiantes= db.collection('inscritos');
+
+
+//insertar dato de prueba en cursos
+collectionCursos.insertOne({
+	idcurso:1,
+	nombrecurso:"Gestion TICS",
+	descripcioncurso:"Curso de marcos orientado a TICS",
+	costo:100,
+	modalidad:"Presencial",
+	intensidad:38,
+	estado:"Disponible"
+ },(err,result)=>{
+	 if(err){
+		  return console.log("error ingresando usuario")
+	  }
+	 return console.log(result.ops)
+ }  )
+/*
+//insertar dato de prueba en inscritos
+  collectionEstudiantes.insertOne({
+	  estudiante: "Jose",
+	  documento:3,
+	  correo:"jose@outlook.com",
+      telefono:4004000,
+      cursoactual:1
+   },(err,result)=>{
+       if(err){
+            return console.log("error ingresando usuario")
+        }
+       return console.log(result.ops)
+   }  )
+
+*/
+client.close();
+});
+
+
 app.use('/css', express.static(dirNode_modules + '/bootstrap/dist/css'));
 app.use('/js', express.static(dirNode_modules + '/jquery/dist'));
 app.use('/js', express.static(dirNode_modules + '/popper.js/dist'));
