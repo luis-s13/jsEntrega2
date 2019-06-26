@@ -3,6 +3,17 @@ const app = express();
 const path = require('path');
 const hbs = require('hbs');
 const bodyParser= require('body-parser'); //para procesar post
+const port = process.env.PORT || 3000;
+
+const dirNode_modules = path.join(__dirname, '../node_modules')
+
+app.use('/css', express.static(dirNode_modules + '/bootstrap/dist/css'));
+app.use('/js', express.static(dirNode_modules + '/jquery/dist'));
+app.use('/js', express.static(dirNode_modules + '/popper.js/dist'));
+
+app.use('/js', express.static(dirNode_modules + '/bootstrap/dist/js'));
+
+
 require ('./helpers');
 
 const directoriopublico = path.join(__dirname,'../public');
@@ -89,16 +100,7 @@ app.post('/estadoCambiado',(req,res) =>{ //para post
 	});
 });
 
-/*
-app.post('/calculos',(req,res) =>{ //para post
-	res.render('calculos', {
-		estudiante: req.body.nombre,//body porque es post
-		nota1: parseInt (req.body.nota1),//body porque es post
-		nota2: parseInt (req.body.nota2),//body porque es post
-		nota3: parseInt (req.body.nota3)//body porque es post
-	});
-});
-*/
-app.listen(3000, () => {
-	console.log('Escuchando en puerto 3000')
+
+app.listen(port, () => {
+	console.log('servidor en el puerto '+port)
 })
