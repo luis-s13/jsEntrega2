@@ -33,7 +33,7 @@ const db=client.db(dbName);
 const collectionCursos= db.collection('cursos');
 const collectionEstudiantes= db.collection('inscritos');
 
-
+/*
 //insertar dato de prueba en cursos
 collectionCursos.insertOne({
 	idcurso:1,
@@ -49,7 +49,7 @@ collectionCursos.insertOne({
 	  }
 	 return console.log(result.ops)
  }  )
-/*
+
 //insertar dato de prueba en inscritos
   collectionEstudiantes.insertOne({
 	  estudiante: "Jose",
