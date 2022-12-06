@@ -4,8 +4,8 @@
   "description": "entrega2 historias",
   "main": "app.js",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.0",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "hbs": "^4.0.4",
     "mongodb": "^3.2.7",
     "opn": "^6.0.0",
